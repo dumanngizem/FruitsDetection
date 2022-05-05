@@ -1,1 +1,2 @@
 # FruitsDetection
+CekipAL Mobile Application
