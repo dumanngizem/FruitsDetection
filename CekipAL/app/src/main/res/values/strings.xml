@@ -4,4 +4,6 @@
     <string name="camera">Kamera</string>
     <string name="gallery">Galeri</string>
     <string name="detect">Tespit Et</string>
+    <string name="detection_result">Tahmin Sonucu</string>
+    <string name="predict_here">Tahmin Buraya</string>
 </resources>

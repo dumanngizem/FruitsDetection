@@ -1,0 +1,16 @@
+Taze Elma
+Taze Muz
+Taze Üzüm
+Taze Kivi
+Taze Portakal
+Taze Armut
+Taze Çilek
+Taze Karpuz
+Çürük Elma
+Çürük Muz
+Çürük Üzüm
+Çürük Kivi
+Çürük Portakal
+Çürük Armut
+Çürük Çilek
+Çürük Karpuz
