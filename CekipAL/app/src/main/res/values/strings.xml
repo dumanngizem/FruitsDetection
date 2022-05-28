@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">CekipAL</string>
     <string name="welcome">HOŞGELDİNİZ</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="detect">Tespit Et</string>
 </resources>
