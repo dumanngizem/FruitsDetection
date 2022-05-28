@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fruits_info">
+        <item>Bilinenin aksine domates bir sebze değil meyvedir. Domatesler tüm dünyada en çok tüketilen meyveler arasında yer almaktadır.</item>
+        <item>En sevilen meyvelerden biri olan muzun antiasit özelliği bulunmaktadır. Bu nedenle mideniz ekşime ya da yanma hissettiğiniz zamanlarda muz yiyerek midenizi rahatlatabilirsiniz.</item>
+        <item>Bir kova suya elma attığınız zaman dibe çökmek yerine su yüzeyinde kalır, bunun nedeni ise elmaların %25’inin havadan oluşmasıdır.</item>
+        <item>Bir çileğin üzerinde ortalama 200 adet tohumcuk bulunmaktadır.</item>
+        <item>Sadece meyvelerde değil sebzelerde de C vitamini bulunmaktadır. Koyu yeşil sebzelerde açık yeşil sebzelere göre daha çok vitamin bulunmaktadır.</item>
+        <item>Muz, sindirimi oldukça kolay ve besin ögeleri açısından oldukça zengin olmasından dolayı bebeklere verilen ilk meyvedir.</item>
+        <item>Bir elma ağacı yılda ortalama 400 elma verir.</item>
+        <item>Yaban mersinini sık tüketmek gözün karanlık ortamlarda daha iyi görmesini sağlar.</item>
+        <item>Eski çağlarda kaşifler uzun sefere çıktıkları zaman yanlarında suyu karpuz kabuğu ile taşırlardı.</item>
+        <item>Çilek ve kaju, tohumunu dışında taşıyan meyvelerdir. Diğer tüm meyveler tohumunu içinde barındırır.</item>
+        <item>Kivide portakala kıyasla iki katı daha fazla C vitamini bulunmaktadır.</item>
+        <item>Portakalın içindeki antioksidanlar cilde zarar veren ve yaşlanmasını sağlayan toksinlere karşı oldukça etkilidir.</item>
+        <item>Düzenli olarak meyve ve sebze tüketmenin kalp rahatsızlığı, obezite ve kanser riskini azalttığı vurgulanmaktadır.</item>
+    </string-array>
+    <string name="tvFruitArray"></string>
+</resources>

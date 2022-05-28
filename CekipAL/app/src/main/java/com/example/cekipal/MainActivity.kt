@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.cekipal.databinding.ActivityMainBinding
 import java.io.File
+import kotlin.random.Random
 
 lateinit var bitmap : Bitmap
 
@@ -39,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.detectBtn.visibility = View.GONE
+
+        val fruitArray = resources.getStringArray(R.array.fruits_info)
+        val randomIndex = (0..fruitArray.size).shuffled().random()
+        println("asmvşkmdfjkvnşfgjkdbmkfgm $randomIndex")
+        binding.tvFruitInfo.text = fruitArray[randomIndex]
     }
 
     private fun initializeEvents(){
@@ -130,6 +136,7 @@ class MainActivity : AppCompatActivity() {
             bitmap = rotateBitmap()!!
             binding.photo.setImageBitmap(bitmap)
 
+            binding.tvFruitInfo.visibility = View.GONE
             binding.detectBtn.visibility = View.VISIBLE
             binding.camGalLinearLayout.visibility = View.GONE
 
@@ -137,9 +144,9 @@ class MainActivity : AppCompatActivity() {
         else if(resultCode == Activity.RESULT_OK && requestCode == 2)
         {
             photoUri = data?.data!!
-            binding.photo.setImageURI(photoUri)
             bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver,photoUri)
-
+            binding.photo.setImageBitmap(bitmap)
+            binding.tvFruitInfo.visibility = View.GONE
             binding.detectBtn.visibility = View.VISIBLE
             binding.camGalLinearLayout.visibility = View.GONE
         }
