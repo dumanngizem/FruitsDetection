@@ -21,18 +21,16 @@ import androidx.core.content.FileProvider
 import com.example.cekipal.databinding.ActivityMainBinding
 import java.io.File
 
+lateinit var bitmap : Bitmap
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityMainBinding
     var currentPath: String? = null
-    lateinit var bitmap : Bitmap
     private lateinit var photoUri : Uri
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         initializeViews()
         initializeEvents()
     }
@@ -41,11 +39,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.detectBtn.visibility = View.GONE
-
     }
 
     private fun initializeEvents(){
-
         binding.cameraBtn.setOnClickListener {
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
             {
@@ -66,6 +62,11 @@ class MainActivity : AppCompatActivity() {
             {
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
             }
+        }
+
+        binding.detectBtn.setOnClickListener {
+            val intent = Intent(this, DetectionScreen::class.java)
+            startActivity(intent)
         }
     }
 
@@ -171,3 +172,4 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+
