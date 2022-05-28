@@ -10,8 +10,9 @@
         android:id="@+id/tvWelcomel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:text="@string/welcome"
+        android:textColor="#333333"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -20,8 +21,8 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="390dp"
+        android:layout_height="510dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -30,6 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcomel"
-        app:srcCompat="@mipmap/logo" />
+        app:srcCompat="@mipmap/cekipallogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
