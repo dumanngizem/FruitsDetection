@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.example.cekipal.MyService
 import com.example.cekipal.databinding.ActivityDetectionScreenBinding.inflate
 import com.example.cekipal.R
 import com.example.cekipal.databinding.ActivityMainBinding
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeEvents(){
-        val serviceIntent = Intent(this,MyService ::class.java)
+        val serviceIntent = Intent(this, MyService ::class.java)
         startService(serviceIntent)
         mediaSoundPlayer = MediaPlayer.create(this,R.raw.sound)
 
