@@ -65,13 +65,6 @@ class ImageClassifier(activity: Context) {
             this.confidence = confidence
         }
 
-        override fun toString(): String {
-            return "Recognition{" +
-                    "Meyve='" + name + '\'' +
-                    ", Tahmin=" + confidence +
-                    '}'
-        }
-
         override fun compareTo(other: Any?): Int {
             return (other as Recognition?)!!.confidence.compareTo(confidence)
         }
@@ -86,10 +79,7 @@ class ImageClassifier(activity: Context) {
     }
 
     init {
-        val classifierModel = FileUtil.loadMappedFile(
-            activity,
-            "detectionModel.tflite"
-        )
+        val classifierModel = FileUtil.loadMappedFile(activity, "detectionModel.tflite")
         // Loads labels out from the label file.
         labels = FileUtil.loadLabels(activity, "label.txt")
         tensorClassifier = Interpreter(classifierModel, null)

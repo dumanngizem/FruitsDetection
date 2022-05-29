@@ -27,8 +27,8 @@ lateinit var bitmap : Bitmap
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityMainBinding
-    var currentPath: String? = null
+    private lateinit var binding : ActivityMainBinding
+    private var currentPath: String? = null
     private lateinit var photoUri : Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,7 +78,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    var detectScreenRL = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+    private var detectScreenRL = registerForActivityResult(ActivityResultContracts
+    .StartActivityForResult()){
         if(it.resultCode == RESULT_OK || it.resultCode == RESULT_CANCELED){ //close
             initializeVisibility()
         }
@@ -120,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         {
             if (gr != PackageManager.PERMISSION_GRANTED)
             {
-                Toast.makeText(this, "İzinlerin tümü verilmedi.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.toast_permission_message), Toast.LENGTH_LONG).show()
                 return
             }
         }
@@ -182,13 +183,13 @@ class MainActivity : AppCompatActivity() {
             ExifInterface.TAG_ORIENTATION,
             ExifInterface.ORIENTATION_UNDEFINED
         )
-        var rotatedBitmap: Bitmap? = null
-        when (orientation) {
-            ExifInterface.ORIENTATION_ROTATE_90 -> rotatedBitmap = rotateImage(bitmap, 90f)
-            ExifInterface.ORIENTATION_ROTATE_180 -> rotatedBitmap = rotateImage(bitmap, 180f)
-            ExifInterface.ORIENTATION_ROTATE_270 -> rotatedBitmap = rotateImage(bitmap, 270f)
-            ExifInterface.ORIENTATION_NORMAL -> rotatedBitmap = bitmap
-            else -> rotatedBitmap = bitmap
+
+        val rotatedBitmap = when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> rotateImage(bitmap, 90f)
+            ExifInterface.ORIENTATION_ROTATE_180 -> rotateImage(bitmap, 180f)
+            ExifInterface.ORIENTATION_ROTATE_270 -> rotateImage(bitmap, 270f)
+            ExifInterface.ORIENTATION_NORMAL -> bitmap
+            else -> bitmap
         }
         return rotatedBitmap
     }

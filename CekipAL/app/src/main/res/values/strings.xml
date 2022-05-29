@@ -6,4 +6,5 @@
     <string name="detect">Tespit Et</string>
     <string name="detection_result">Tahmin Sonucu:</string>
     <string name="predict_here">Tahmin Buraya</string>
+    <string name="toast_permission_message">İzinlerin tümü verilmedi.</string>
 </resources>

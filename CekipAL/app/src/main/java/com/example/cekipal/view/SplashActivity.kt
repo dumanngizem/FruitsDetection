@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.cekipal.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
-    lateinit var binding : ActivitySplashBinding
+    private lateinit var binding : ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)

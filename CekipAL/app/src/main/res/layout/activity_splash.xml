@@ -18,7 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19999999"
-        app:srcCompat="@mipmap/icon" />
+        app:srcCompat="@mipmap/icon"
+        android:contentDescription="@null"/>
 
     <ImageView
         android:id="@+id/background"
@@ -32,7 +33,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/background1" />
+        app:srcCompat="@mipmap/background_icon"
+        android:contentDescription="@null"/>
 
     <TextView
         android:id="@+id/tvAppName"
