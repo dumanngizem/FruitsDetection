@@ -1,4 +1,4 @@
-package com.example.cekipal.classifier
+package com.example.cekipal.bLL.classifier
 
 import android.content.Context
 import android.graphics.Bitmap

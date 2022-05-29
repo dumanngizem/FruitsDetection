@@ -1,4 +1,4 @@
-package com.example.cekipal
+package com.example.cekipal.view
 
 import android.Manifest
 import android.app.Activity
@@ -18,9 +18,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.example.cekipal.R
 import com.example.cekipal.databinding.ActivityMainBinding
 import java.io.File
-import kotlin.random.Random
 
 lateinit var bitmap : Bitmap
 

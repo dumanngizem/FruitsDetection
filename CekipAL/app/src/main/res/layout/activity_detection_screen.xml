@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E5EAF1"
-    tools:context=".DetectionScreen">
+    tools:context=".view.DetectionScreen">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"

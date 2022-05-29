@@ -1,9 +1,10 @@
-package com.example.cekipal
+package com.example.cekipal.bLL
 
 import android.content.Context
 import android.os.AsyncTask
 import android.util.Log
-import com.example.cekipal.classifier.ImageClassifier
+import com.example.cekipal.view.bitmap
+import com.example.cekipal.bLL.classifier.ImageClassifier
 import java.io.IOException
 
 class Detection_Async (val context : Context, val resultFunc : (predict : String?) -> Unit) : AsyncTask<Void, Void, String?>()  {

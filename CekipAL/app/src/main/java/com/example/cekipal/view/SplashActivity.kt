@@ -1,4 +1,4 @@
-package com.example.cekipal
+package com.example.cekipal.view
 
 import android.content.Intent
 import android.os.Bundle
