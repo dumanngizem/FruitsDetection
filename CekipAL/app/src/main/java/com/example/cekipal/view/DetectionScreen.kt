@@ -30,10 +30,15 @@ class DetectionScreen : AppCompatActivity() {
         progressBar.indeterminateDrawable = doubleBounce
 
         Detection_Async(this, this::resultFunc).execute()
+        if(musicExist!!) startService(serviceIntent) else stopService(serviceIntent)
+
     }
 
     private fun initializeEvents(){
         binding.closeBtn.setOnClickListener {
+            if(clickSoundExist!!){
+                mediaSoundPlayer.start()
+            }
             setResult(RESULT_OK,intent)
             finish()
         }
