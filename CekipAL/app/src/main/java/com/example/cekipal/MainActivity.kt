@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
         val fruitArray = resources.getStringArray(R.array.fruits_info)
         val randomIndex = (0..fruitArray.size).shuffled().random()
-        println("asmvşkmdfjkvnşfgjkdbmkfgm $randomIndex")
         binding.tvFruitInfo.text = fruitArray[randomIndex]
     }
 
