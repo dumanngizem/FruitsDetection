@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E5EAF1"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -31,6 +31,21 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/photoAnim"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/fruit"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/photo"
@@ -63,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo"
+        app:layout_constraintTop_toBottomOf="@+id/photoAnim"
         app:layout_constraintVertical_bias="0.55">
 
         <androidx.appcompat.widget.AppCompatButton
@@ -103,8 +118,8 @@
         android:textColor="#273585"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/photo"
-        app:layout_constraintStart_toStartOf="@+id/photo"
+        app:layout_constraintEnd_toEndOf="@+id/photoAnim"
+        app:layout_constraintStart_toStartOf="@+id/photoAnim"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.58000004" />
 

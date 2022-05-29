@@ -14,6 +14,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeViews()
+        initializeVisibility()
         initializeEvents()
     }
 
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.detectBtn.visibility = View.GONE
+        binding.photo.visibility = View.GONE
 
         val fruitArray = resources.getStringArray(R.array.fruits_info)
         val randomIndex = (fruitArray.indices).shuffled().random()
@@ -71,8 +74,39 @@ class MainActivity : AppCompatActivity() {
 
         binding.detectBtn.setOnClickListener {
             val intent = Intent(this, DetectionScreen::class.java)
-            startActivity(intent)
+            detectScreenRL.launch(intent)
         }
+    }
+
+    var detectScreenRL = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        if(it.resultCode == RESULT_OK || it.resultCode == RESULT_CANCELED){ //close
+            initializeVisibility()
+        }
+    }
+
+    private fun initializeVisibilityWithPhoto(){
+        binding.photo.visibility = View.VISIBLE
+        binding.detectBtn.visibility = View.VISIBLE
+
+        binding.photoAnim.visibility = View.GONE
+        binding.tvFruitInfo.visibility = View.GONE
+        binding.camGalLinearLayout.visibility = View.GONE
+    }
+
+    private fun initializeVisibility(){
+        binding.photoAnim.visibility = View.VISIBLE
+        binding.camGalLinearLayout.visibility = View.VISIBLE
+        binding.tvFruitInfo.visibility = View.VISIBLE
+
+        binding.photo.visibility = View.GONE
+        binding.detectBtn.visibility = View.GONE
+    }
+
+    override fun onBackPressed() {
+        if(binding.photoAnim.visibility == View.VISIBLE){
+            super.onBackPressed()
+        }
+        initializeVisibility()
     }
 
     override fun onRequestPermissionsResult(
@@ -90,9 +124,7 @@ class MainActivity : AppCompatActivity() {
                 return
             }
         }
-
         if(requestCode == 1) galleryFun() else cameraFun()
-
     }
 
     private fun cameraFun()
@@ -133,21 +165,15 @@ class MainActivity : AppCompatActivity() {
             bmOptions.inPurgeable = true
             bitmap = BitmapFactory.decodeFile(currentPath, bmOptions)
             bitmap = rotateBitmap()!!
+            initializeVisibilityWithPhoto()
             binding.photo.setImageBitmap(bitmap)
-
-            binding.tvFruitInfo.visibility = View.GONE
-            binding.detectBtn.visibility = View.VISIBLE
-            binding.camGalLinearLayout.visibility = View.GONE
-
         }
         else if(resultCode == Activity.RESULT_OK && requestCode == 2)
         {
             photoUri = data?.data!!
             bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver,photoUri)
+            initializeVisibilityWithPhoto()
             binding.photo.setImageBitmap(bitmap)
-            binding.tvFruitInfo.visibility = View.GONE
-            binding.detectBtn.visibility = View.VISIBLE
-            binding.camGalLinearLayout.visibility = View.GONE
         }
     }
 
@@ -175,7 +201,6 @@ class MainActivity : AppCompatActivity() {
             matrix, true
         )
     }
-
 
 }
 

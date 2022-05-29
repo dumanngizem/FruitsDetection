@@ -1,5 +1,6 @@
 package com.example.cekipal.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -16,6 +17,9 @@ class DetectionScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeViews()
+        var intent = Intent()
+        initializeEvents()
+
     }
 
     private fun initializeViews(){
@@ -30,6 +34,13 @@ class DetectionScreen : AppCompatActivity() {
         progressBar.indeterminateDrawable = doubleBounce
 
         Detection_Async(this, this::resultFunc).execute()
+    }
+
+    private fun initializeEvents(){
+        binding.closeBtn.setOnClickListener {
+            setResult(RESULT_OK,intent)
+            finish()
+        }
     }
 
     fun resultFunc (predict : String?)
