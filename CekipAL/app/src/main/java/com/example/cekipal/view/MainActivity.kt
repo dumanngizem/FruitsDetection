@@ -1,6 +1,7 @@
 package com.example.cekipal.view
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -8,18 +9,14 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-import android.media.AudioManager
 import android.media.ExifInterface
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
-import android.widget.PopupWindow
 import android.widget.Switch
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -27,21 +24,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.example.cekipal.MyService
-import com.example.cekipal.databinding.ActivityDetectionScreenBinding.inflate
+import com.example.cekipal.bLL.MyService
 import com.example.cekipal.R
 import com.example.cekipal.databinding.ActivityMainBinding
 import java.io.File
 
 lateinit var bitmap : Bitmap
+lateinit var mediaSoundPlayer : MediaPlayer
+var clickSoundExist : Boolean? = null
+var musicExist : Boolean? = null
+lateinit var serviceIntent : Intent
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private var currentPath: String? = null
     private lateinit var photoUri : Uri
-    private lateinit var mediaSoundPlayer : MediaPlayer
-    private var clickSoundExist : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,15 +57,20 @@ class MainActivity : AppCompatActivity() {
         val fruitArray = resources.getStringArray(R.array.fruits_info)
         val randomIndex = (fruitArray.indices).shuffled().random()
         binding.tvFruitInfo.text = fruitArray[randomIndex]
+
+        clickSoundExist = readSettings("sound") == true
+        musicExist = readSettings("music") == true
     }
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private fun initializeEvents(){
-        val serviceIntent = Intent(this, MyService ::class.java)
-        startService(serviceIntent)
+        serviceIntent = Intent(this, MyService ::class.java)
         mediaSoundPlayer = MediaPlayer.create(this,R.raw.sound)
 
+        if(musicExist!!) startService(serviceIntent) else stopService(serviceIntent)
+
         binding.cameraBtn.setOnClickListener {
-            if(clickSoundExist){
+            if(clickSoundExist!!){
                 mediaSoundPlayer.start()
             }
 
@@ -82,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.galleryBtn.setOnClickListener {
-            if(clickSoundExist){
+            if(clickSoundExist!!){
                 mediaSoundPlayer.start()
             }
 
@@ -97,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.detectBtn.setOnClickListener {
-            if(clickSoundExist){
+            if(clickSoundExist!!){
                 mediaSoundPlayer.start()
             }
 
@@ -106,34 +109,58 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.settingsImageButton.setOnClickListener{
-            if(clickSoundExist){
+            if(clickSoundExist!!){
                 mediaSoundPlayer.start()
             }
 
             val popup = LayoutInflater.from(this).inflate(R.layout.settings_popup, null)
-            val popUyari = AlertDialog.Builder(this)
-            popUyari.setView(popup)
-            popUyari.show()
+            val popWarning = AlertDialog.Builder(this)
+            popWarning.setView(popup)
 
             val swMusic = popup.findViewById<Switch>(R.id.swMusic)
-            swMusic.setOnCheckedChangeListener { buttonView, isChecked ->
+            val swSound = popup.findViewById<Switch>(R.id.swSound)
+
+            swMusic.isChecked = readSettings("music") == true
+            swSound.isChecked = readSettings("sound") == true
+
+            popWarning.show()
+
+            swMusic.setOnCheckedChangeListener { _, isChecked ->
                 if(isChecked){
+                    musicExist = true
+                    writeSettings("music",musicExist!!)
                     startService(serviceIntent)
-                }else{
+                }
+                else{
+                    musicExist = false
+                    writeSettings("music",musicExist!!)
                     stopService(serviceIntent)
                 }
             }
-            val swSound = popup.findViewById<Switch>(R.id.swSound)
-            swSound.setOnCheckedChangeListener { buttonView, isChecked ->
+            swSound.setOnCheckedChangeListener { _, isChecked ->
                 if(isChecked){
                     clickSoundExist = true
-                }else{
+                    writeSettings("sound",clickSoundExist!!)
+                }
+                else{
                     clickSoundExist = false
-                    Toast.makeText(this, "ÇALIŞMIYOR.", Toast.LENGTH_LONG).show()
+                    writeSettings("sound",clickSoundExist!!)
                 }
             }
         }
     }
+
+    private fun writeSettings(key: String, value: Boolean ){
+        val pref = getSharedPreferences(packageName, MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putBoolean(key,value)
+        editor.commit()
+    }
+    private fun readSettings(key: String):Boolean{
+        val pref = getSharedPreferences(packageName, MODE_PRIVATE)
+        return pref.getBoolean(key,true)
+    }
+
 
     private var detectScreenRL = registerForActivityResult(ActivityResultContracts
     .StartActivityForResult()){
@@ -149,6 +176,7 @@ class MainActivity : AppCompatActivity() {
         binding.photoAnim.visibility = View.GONE
         binding.tvFruitInfo.visibility = View.GONE
         binding.camGalLinearLayout.visibility = View.GONE
+        binding.settingsImageButton.visibility = View.GONE
     }
 
     private fun initializeVisibility(){
@@ -158,15 +186,27 @@ class MainActivity : AppCompatActivity() {
 
         binding.photo.visibility = View.GONE
         binding.detectBtn.visibility = View.GONE
+        binding.settingsImageButton.visibility = View.VISIBLE
+
     }
 
     override fun onBackPressed() {
         if(binding.photoAnim.visibility == View.VISIBLE){
             super.onBackPressed()
+            stopService(serviceIntent)
         }
         initializeVisibility()
     }
 
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        stopService(serviceIntent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(musicExist!!) startService(serviceIntent) else stopService(serviceIntent)
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

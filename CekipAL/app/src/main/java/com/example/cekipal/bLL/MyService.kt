@@ -1,9 +1,10 @@
-package com.example.cekipal
+package com.example.cekipal.bLL
 
 import android.app.Service
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.IBinder
+import com.example.cekipal.R
 
 class MyService : Service() {
     private lateinit var mediaPlayer : MediaPlayer

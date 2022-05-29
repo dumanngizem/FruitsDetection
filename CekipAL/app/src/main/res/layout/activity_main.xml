@@ -13,17 +13,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.04" />
+        app:layout_constraintGuide_begin="70dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/detectBtn"
-        android:layout_width="184dp"
-        android:layout_height="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:layout_marginTop="50dp"
         android:layout_weight="1"
         android:background="@drawable/button_background"
         android:backgroundTint="#7C8EF4"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
         android:text="@string/detect"
         android:textColor="#E5EAF1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -127,11 +129,11 @@
         android:id="@+id/settingsImageButton"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         android:backgroundTint="#00FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/settings_button" />
 
