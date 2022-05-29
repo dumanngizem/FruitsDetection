@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#E5EAF1"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Switch
+            android:id="@+id/swMusic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:checked="false"
+            android:drawableLeft="@drawable/notification"
+            android:scrollbarAlwaysDrawVerticalTrack="false"
+            android:text="Müzik"
+            android:textAlignment="center"
+            android:textColor="#273585"
+            android:textSize="20dp"
+            android:thumb="@drawable/switch_icon"
+            android:trackTint="#7C8EF4" />
+
+        <Switch
+            android:id="@+id/swSound"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/voice"
+            android:text="Bildirim"
+            android:textAlignment="center"
+            android:textColor="#273585"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            android:thumb="@drawable/switch_icon"
+            android:trackTint="#7C8EF4"
+            tools:checked="false" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

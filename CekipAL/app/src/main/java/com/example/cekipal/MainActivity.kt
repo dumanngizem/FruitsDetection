@@ -2,6 +2,7 @@ package com.example.cekipal
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -12,12 +13,17 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.View.inflate
+import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.example.cekipal.databinding.ActivityDetectionScreenBinding.inflate
 import com.example.cekipal.databinding.ActivityMainBinding
 import java.io.File
 import kotlin.random.Random
@@ -73,7 +79,16 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, DetectionScreen::class.java)
             startActivity(intent)
         }
+
+        binding.settingsImageButton.setOnClickListener{
+            var popup = LayoutInflater.from(this).inflate(R.layout.settings_popup, null)
+            ///val popUyari = PopupWindow(popup,windowManager.defaultDisplay.width, windowManager.defaultDisplay.height)
+            val popUyari = AlertDialog.Builder(this)
+            popUyari.setView(popup)
+            popUyari.show()
+        }
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
