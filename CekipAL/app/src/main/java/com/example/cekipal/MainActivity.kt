@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         binding.detectBtn.visibility = View.GONE
 
         val fruitArray = resources.getStringArray(R.array.fruits_info)
-        val randomIndex = (0..fruitArray.size).shuffled().random()
+        val randomIndex = (fruitArray.indices).shuffled().random()
         binding.tvFruitInfo.text = fruitArray[randomIndex]
     }
 
