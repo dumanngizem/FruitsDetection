@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00FAF5F5"
-    tools:context=".SplashActivity">
+    tools:context=".view.SplashActivity">
 
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/appIcon"
         android:layout_width="320dp"
         android:layout_height="320dp"
         android:layout_marginTop="30dp"
@@ -18,10 +18,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19999999"
-        app:srcCompat="@mipmap/icon" />
+        app:srcCompat="@mipmap/icon"
+        android:contentDescription="@null"/>
 
     <ImageView
-        android:id="@+id/icon2"
+        android:id="@+id/background"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:elevation="1dp"
@@ -32,39 +33,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/background1" />
+        app:srcCompat="@mipmap/background_icon"
+        android:contentDescription="@null"/>
 
     <TextView
-        android:id="@+id/tvCekipAl"
+        android:id="@+id/tvAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:elevation="11dp"
         android:fontFamily="@font/abril_fatface"
-        android:text="ÇekipAL"
+        android:text="@string/app_name"
         android:textColor="#1D243A"
         android:textSize="60sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/icon"
-        app:layout_constraintStart_toStartOf="@+id/icon"
-        app:layout_constraintTop_toBottomOf="@+id/icon" />
+        app:layout_constraintEnd_toEndOf="@+id/appIcon"
+        app:layout_constraintStart_toStartOf="@+id/appIcon"
+        app:layout_constraintTop_toBottomOf="@+id/appIcon" />
 
     <TextView
-        android:id="@+id/tvFreshorRotten"
+        android:id="@+id/tvAppInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="32dp"
         android:elevation="11dp"
         android:fontFamily="@font/abril_fatface"
-        android:text="Fresh or Rotten"
+        android:text="@string/fresh_or_rotten"
         android:textColor="#2B3553"
         android:textSize="37sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/icon2"
-        app:layout_constraintEnd_toEndOf="@+id/tvCekipAl"
-        app:layout_constraintStart_toStartOf="@+id/tvCekipAl"
-        app:layout_constraintTop_toBottomOf="@+id/tvCekipAl"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="@+id/tvAppName"
+        app:layout_constraintStart_toStartOf="@+id/tvAppName"
+        app:layout_constraintTop_toBottomOf="@+id/tvAppName"
         app:layout_constraintVertical_bias="0.13" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

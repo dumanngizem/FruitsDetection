@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">CekipAL</string>
-    <string name="welcome">HOŞGELDİNİZ</string>
+    <string name="app_name">ÇekipAL</string>
+    <string name="fresh_or_rotten">Fresh or Rotten</string>
     <string name="camera">Kamera</string>
     <string name="gallery">Galeri</string>
     <string name="detect">Tespit Et</string>
     <string name="detection_result">Tahmin Sonucu:</string>
     <string name="predict_here">Tahmin Buraya</string>
+    <string name="toast_permission_message">İzinlerin tümü verilmedi.</string>
 </resources>
