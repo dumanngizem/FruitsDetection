@@ -8,7 +8,9 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import android.media.AudioManager
 import android.media.ExifInterface
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -18,6 +20,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.inflate
 import android.widget.PopupWindow
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -35,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
     var currentPath: String? = null
     private lateinit var photoUri : Uri
+    private lateinit var mediaSoundPlayer : MediaPlayer
+    private var clickSoundExist : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +58,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeEvents(){
+        val serviceIntent = Intent(this,MyService ::class.java)
+        startService(serviceIntent)
+        mediaSoundPlayer = MediaPlayer.create(this,R.raw.sound)
+
         binding.cameraBtn.setOnClickListener {
+            if(clickSoundExist){
+                mediaSoundPlayer.start()
+            }
+
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
             {
                 cameraFun()
@@ -65,6 +78,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.galleryBtn.setOnClickListener {
+            if(clickSoundExist){
+                mediaSoundPlayer.start()
+            }
+
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE ) == PackageManager.PERMISSION_GRANTED)
             {
                 galleryFun()
@@ -76,16 +93,41 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.detectBtn.setOnClickListener {
+            if(clickSoundExist){
+                mediaSoundPlayer.start()
+            }
+
             val intent = Intent(this, DetectionScreen::class.java)
             startActivity(intent)
         }
 
         binding.settingsImageButton.setOnClickListener{
-            var popup = LayoutInflater.from(this).inflate(R.layout.settings_popup, null)
-            ///val popUyari = PopupWindow(popup,windowManager.defaultDisplay.width, windowManager.defaultDisplay.height)
+            if(clickSoundExist){
+                mediaSoundPlayer.start()
+            }
+
+            val popup = LayoutInflater.from(this).inflate(R.layout.settings_popup, null)
             val popUyari = AlertDialog.Builder(this)
             popUyari.setView(popup)
             popUyari.show()
+
+            val swMusic = popup.findViewById<Switch>(R.id.swMusic)
+            swMusic.setOnCheckedChangeListener { buttonView, isChecked ->
+                if(isChecked){
+                    startService(serviceIntent)
+                }else{
+                    stopService(serviceIntent)
+                }
+            }
+            val swSound = popup.findViewById<Switch>(R.id.swSound)
+            swSound.setOnCheckedChangeListener { buttonView, isChecked ->
+                if(isChecked){
+                    clickSoundExist = true
+                }else{
+                    clickSoundExist = false
+                    Toast.makeText(this, "ÇALIŞMIYOR.", Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 

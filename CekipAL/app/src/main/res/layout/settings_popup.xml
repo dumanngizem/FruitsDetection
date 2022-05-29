@@ -21,29 +21,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:checked="false"
+            android:checked="true"
             android:drawableLeft="@drawable/notification"
             android:scrollbarAlwaysDrawVerticalTrack="false"
             android:text="Müzik"
             android:textAlignment="center"
             android:textColor="#273585"
             android:textSize="20dp"
-            android:thumb="@drawable/switch_icon"
-            android:trackTint="#7C8EF4" />
+            android:thumb="@drawable/switch_icon" />
 
         <Switch
             android:id="@+id/swSound"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:checked="true"
             android:drawableLeft="@drawable/voice"
             android:text="Bildirim"
             android:textAlignment="center"
             android:textColor="#273585"
             android:textSize="20sp"
             android:textStyle="normal"
-            android:thumb="@drawable/switch_icon"
-            android:trackTint="#7C8EF4"
-            tools:checked="false" />
+            android:thumb="@drawable/switch_icon" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
