@@ -16,6 +16,7 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import kotlin.collections.ArrayList
 import kotlin.math.min
 
+
 class ImageClassifier(activity: Context) {
     private val imageResizeX: Int
     private val imageResizeY: Int
@@ -46,7 +47,7 @@ class ImageClassifier(activity: Context) {
         // Loads bitmap into a TensorImage.
         inputImageBuffer.load(bitmap)
         val noOfRotations = sensorOrientation / 90
-        val cropSize = min(bitmap.width, bitmap.height)
+        val cropSize = min(224,224)
         val imageProcessor = ImageProcessor.Builder()
             .add(ResizeWithCropOrPadOp(cropSize, cropSize))
             .add(ResizeOp(imageResizeX, imageResizeY, ResizeOp.ResizeMethod.NEAREST_NEIGHBOR))
@@ -58,7 +59,7 @@ class ImageClassifier(activity: Context) {
 
     inner class Recognition : Comparable<Any?> {
         var name: String? = null
-        var confidence = 0f
+        var confidence = 0.0f
         constructor() {}
         constructor(name: String?, confidence: Float) {
             this.name = name
@@ -73,9 +74,9 @@ class ImageClassifier(activity: Context) {
     companion object {
         private const val PROBABILITY_MEAN = 0.0f
         private const val PROBABILITY_STD = 255.0f
-        private const val IMAGE_STD = 1.0f
-        private const val IMAGE_MEAN = 0.0f
-        private const val MAX_SIZE = 5
+        private const val IMAGE_STD = 127.5f
+        private const val IMAGE_MEAN = 127.5f
+        private const val MAX_SIZE = 16
     }
 
     init {

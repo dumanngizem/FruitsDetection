@@ -28,8 +28,9 @@ class Detection_Async (val context : Context, val resultFunc : (predict : String
         val predictionsList: MutableList<String> = ArrayList()
         for (recog in predictions) {
             predictionsList.add(recog.confidence.toString() + "  : " + recog.name)
+            println("label: ${recog.name} tahmin oranı : ${recog.confidence}")
         }
-        return predictionsList[0]
+        return predictionsList[15]
     }
 
     override fun onPostExecute(predict: String?) {
