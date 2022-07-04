@@ -1,2 +1,6 @@
-# FruitsDetection
-CekipAL Mobile Application
+Rotten and Fresh Fruits Detection
+
+Bu repository derin öğrenme ile meyveelrin tazelik durumunun tespiti üzerine yaptığım çalışmanın model eğitim kodlarını içermektedir.
+Derin öğrenme kısmında, modellerin eğitilerek optimum sonucu veren modelin seçilmesi üzerine yazdığımız makaleye bu linkten erişebilirsiniz. 
+
+Dünyada gıda israfı önemli derecede yüksek ve üzerine çalışılmasını gerektirecek ölçüde olduğu için bu çalışma önerilmiştir. Yapılan çalışmada gıda israfında büyük payı oluşturan meyve israfının önüne geçmek adına teknoloji ile tarımı birleştiren bir yaklaşım önerilmektedir. Bu doğrultuda 16 sınıftan 3200 sayıda fotoğraf içeren bir veri seti oluşturulmuştur. Bu veri setinin, VGG16, InceptionV3, Xception ve MobileNet modellerinin çeşitli epoch ve batch size kombinasyonları ile eğitilmiştir. Eğitim sonucunda en iyi başarı oranına sahip model %94 ile MobileNet modelidir. Bu nedenle MobileNet modeli kullanılarak oluşturulan model, derin öğrenme ile meyvelerin tazelik durumlarının tespiti işlemini gerçekleştiren bir mobil uygulama olarak tasarlanmıştır. Veri setinin genişletilmesiyle beraber daha doğru ve geniş çaplı sonuçların elde edilmesi öngörülmektedir. Yapılan çalışma, veri setinin de genişletilmesiyle beraber meyvenin tazelik durumunun tespitini gerektiren çeşitli alanlarda etkin şekilde kullanılabilir hale getirilebilir.
